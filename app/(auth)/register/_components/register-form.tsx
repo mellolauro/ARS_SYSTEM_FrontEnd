@@ -14,6 +14,9 @@ import { Label } from '@/components/ui/label';
 import { UserIcon } from '../_components/user-icon';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import register from '../_actions/register';
+
+//Registro de usuário
 
 export default function RegisterForm() {
   return (
@@ -24,10 +27,10 @@ export default function RegisterForm() {
             <UserIcon className="w-6 h-6" />
             Cadastre-se
           </CardTitle>
-          <CardDescription>Crie uma conta gratuitamente</CardDescription>
+          <CardDescription>Crie sua conta</CardDescription>
         </CardHeader>
         <CardContent>
-          <form className="text-left ">
+          <form action={register} className="text-left ">
             <div className="space-y-6">
               <div className="grid w-full max-w-sm items-center gap-1.5">
                 <Label htmlFor="name">Nome</Label>
@@ -35,7 +38,7 @@ export default function RegisterForm() {
                   name="name"
                   type="name"
                   id="name"
-                  placeholder="Fulano de Tal"
+                  placeholder="Nome"
                 />
               </div>
               <div className="grid w-full max-w-sm items-center gap-1.5">
@@ -45,6 +48,15 @@ export default function RegisterForm() {
                   type="email"
                   id="email"
                   placeholder="email@exemplo.com"
+                />
+              </div>
+              <div className="grid w-full max-w-sm items-center gap-1.5">
+                <Label htmlFor="email">Departamento</Label>
+                <Input
+                  name="departamento"
+                  type="departamento"
+                  id="departamento"
+                  placeholder=""
                 />
               </div>
               <div className="grid w-full max-w-sm items-center gap-1.5">
