@@ -15,6 +15,8 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import login from '../_actions/login';
 
+// pagina de login http://localhost:3000/login
+
 export default function LoginForm() {
   return (
     <Card className="mx-auto max-w-96">

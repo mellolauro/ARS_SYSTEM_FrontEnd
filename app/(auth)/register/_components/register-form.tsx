@@ -16,7 +16,7 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import register from '../_actions/register';
 
-//Registro de usuário
+//Registro de usuário http://localhost:3000/register
 
 export default function RegisterForm() {
   return (
@@ -51,11 +51,11 @@ export default function RegisterForm() {
                 />
               </div>
               <div className="grid w-full max-w-sm items-center gap-1.5">
-                <Label htmlFor="email">Departamento</Label>
+                <Label htmlFor="departament">Departamento</Label>
                 <Input
-                  name="departamento"
-                  type="departamento"
-                  id="departamento"
+                  name="departament"
+                  type="departament"
+                  id="departament"
                   placeholder=""
                 />
               </div>
