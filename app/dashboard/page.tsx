@@ -15,7 +15,7 @@ export default async function Dashboard() {
             <div className="w-3 h-3 bg-green-500 rounded-full" />
           </div>
           <nav className="space-y-3 mt-10">
-          <a href="/" className="flex itmes-center gap-3  text-3xl font-semibold text-zinc-400 hover:text-slate-50">
+          <a href="/" className="flex items-center gap-3  text-3xl font-semibold text-zinc-400 hover:text-slate-50">
             <IndentDecrease />
             Help Desk
           </a> 
@@ -69,7 +69,7 @@ export default async function Dashboard() {
       </aside>
       <main className="flex-1 p-6">
         <div className="flex items-center gap-3">
-            <button className="bg-sky-800 p-4 font-semibold rounded space-x-3.5 text-zinc-400 hover:text-slate-50 ">Create New Ticket</button>            
+            <button className="flex items-center bg-sky-800 p-4 font-semibold rounded space-x-3.5 text-zinc-400 hover:text-slate-50 ">Create New Ticket</button>            
         </div>
           
           <div className="bg-white border-b-2 py-6 px-8 lg:px-0">

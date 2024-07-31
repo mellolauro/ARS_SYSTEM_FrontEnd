@@ -18,5 +18,5 @@ try {
     }
  }
 
- redirect('/dashboard')
+ redirect('/public')
 }
