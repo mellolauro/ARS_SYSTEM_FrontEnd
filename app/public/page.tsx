@@ -1,16 +1,16 @@
 import Link from "next/link";
 
 export default async function HeaderArs() {
-    return (
-    <div>
-            <div className="navbar bg-blue-700">
-                      <div className="flex itens-center gap-6">
-                       <a className="btn btn-ghost text-xl">ARS SYSTEM</a>
-                      </div>
-                <div className="flex-none gap-2"></div>
+    return (      
+            <div className="container w-full">
+               <div className="flex flex-col md:flex-row justify-between items-center p-10 bg-blue-700 text-white">
+                  <div className="m-auto">
+                     <div className="text-center">
+                        <h2 className="font-semibold">ARS SYSTEM</h2>
+                   </div>
+                </div>
+            </div>
 
-    </div>
-         
          <main className="flex-item bg-center col-end-2 p-6">
             <div className="grid grid-cols-2 gap-4 mt-6">
                     <div className="flex items-center">
