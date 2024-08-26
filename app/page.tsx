@@ -14,7 +14,7 @@ export default async function Dashboard() {
 
         <section className='flex flex-wrap items-center justify-center gap-3'>
           <form>
-            <Button>Logout</Button>
+          <Link href="https://www.google.com.br/" className={cn(buttonVariants({variant: 'outline'}))}>Logout</Link>
           </form>
           <Link href="./login" className={cn(buttonVariants({variant: 'outline'}))}>Login</Link>
         </section>
