@@ -6,7 +6,7 @@ import Link from 'next/link';
 export default async function Dashboard() {
 
   return (
-   <div className="h-screen flex flex-col">
+  <div className="h-screen flex flex-col">
     <div className="flex flex-1">
       <aside className="w-72 bg-sky-950 p-6">
       <div className="flex itens-center gap-2">
@@ -109,6 +109,6 @@ export default async function Dashboard() {
     <footer className="bg-slate-300 border-t border-zinc-100 p-2">
       footer
     </footer>
-   </div>
-   )
+  </div>
+  )
 }
