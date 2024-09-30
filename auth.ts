@@ -1,5 +1,5 @@
 import NextAuth from "next-auth";
-import Credentials from "next-auth/providers/credentials";
+import CredentialsProvider from "next-auth/providers/credentials";
 import db from '@/lib/db'
 import { compareSync } from 'bcrypt-ts'
 
@@ -9,18 +9,20 @@ export const {
     signIn
 } = NextAuth({
     providers: [
-        Credentials({
+        CredentialsProvider({
             credentials: {
                 email:{
-                    label: 'email'
+                    label: 'email',
+                    type: 'text',
                 },
+
                 password:{
                     label: 'password',
                     type: 'password'
                 },
             },
 
-        async authorize(credentials) {
+        async authorize(credentials, req) {
             const email = credentials.email as string
             const password = credentials.password as string
             
@@ -32,7 +34,7 @@ export const {
                 where: {
                     email: email
                 }
-            })
+            });
 
             if(!user) {
                 return null;
@@ -41,11 +43,11 @@ export const {
             const matches = compareSync(password, user.password  ??'' ) 
             
             if(matches) {
-                return {id: user.id, name: user.name, email: user.email}
+                return {id: String(user.id), name: user.name, email: user.email}
             }
             return null;
         },
-       
+    
     }),
-  ],
+],
 });
