@@ -1,10 +1,12 @@
 import { ClipboardList, Layers, BookOpenText, List , User, SquareKanban, Component, Pencil, Settings, IndentDecrease  } from 'lucide-react'
+import { getServerSession } from 'next-auth';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
 export default async function Dashboard() {
-
+  const session = await getServerSession();
+  
   return (
   <div className="h-screen flex flex-col">
     <div className="flex flex-1">

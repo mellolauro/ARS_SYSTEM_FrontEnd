@@ -1,5 +1,6 @@
 'use client';
 
+import { signIn } from 'next-auth/react';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -16,6 +17,20 @@ import { cn } from '@/lib/utils';
 import login from '../_actions/login';
 
 export default function LoginForm() {
+  async function login(e: React.FormEvent<HTMLFormElement>){
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+
+    const data = {
+      email: formData.get("email"),
+      password: formData.get("password"),
+    };
+    signIn("credentials", {
+      ...data,
+      callbackUrl: "/dashborad",
+    });
+
+  }
   return (
     <Card className="mx-auto max-w-96">
       <CardHeader>
@@ -24,7 +39,7 @@ export default function LoginForm() {
       </CardHeader>
       <CardContent>
         {' '}
-        <form action={login} className="text-left ">
+        <form onSubmit={login} className="text-left ">
           <div className="space-y-6">
             <div className="grid w-full max-w-sm items-center gap-1.5">
               <Label htmlFor="email">Email</Label>

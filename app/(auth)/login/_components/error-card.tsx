@@ -4,7 +4,7 @@ import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, }
 import {Button, buttonVariants} from '@/components/ui/button';
 
 import Link from 'next/link';
-import { cn } from '@/lib/utils';
+import { cn } from '../../../../lib/utils';
 import { CircleX } from 'lucide-react';
 
 export default function ErrorCard({
