@@ -14,10 +14,9 @@ import {
 } from '@/components/ui/card';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import login from '../_actions/login';
 
 export default function LoginForm() {
-  async function login(e: React.FormEvent<HTMLFormElement>){
+  async function login(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
 
@@ -25,12 +24,27 @@ export default function LoginForm() {
       email: formData.get("email"),
       password: formData.get("password"),
     };
-    signIn("credentials", {
+
+    console.log('Sending login data:', data); // Verificar se os dados estão corretos
+
+    const result = await signIn("credentials", {
       ...data,
-      callbackUrl: "/dashborad",
+      redirect: true,  // Evita o redirecionamento automático
+      callbackUrl: "/dashboard",  // Corrigido o caminho do callback
     });
 
+    console.log('Login result:', result); // Verificar se há algum erro na resposta
+
+    if (result?.error) {
+      console.error(result.error);
+      // Lide com o erro da maneira desejada (por exemplo, exibir mensagem)
+    }
+
+    if (result?.ok) {
+      window.location.href = result.url || "/dashboard";  // Redireciona manualmente
+    }
   }
+
   return (
     <Card className="mx-auto max-w-96">
       <CardHeader>
@@ -38,8 +52,7 @@ export default function LoginForm() {
         <CardDescription>Entre com email e senha</CardDescription>
       </CardHeader>
       <CardContent>
-        {' '}
-        <form onSubmit={login} className="text-left ">
+        <form onSubmit={login} className="text-left">
           <div className="space-y-6">
             <div className="grid w-full max-w-sm items-center gap-1.5">
               <Label htmlFor="email">Email</Label>
@@ -55,7 +68,7 @@ export default function LoginForm() {
               />
             </div>
           </div>
-          <Button size={'lg'} type="submit" className="w-full mt-10 ">
+          <Button size={'lg'} type="submit" className="w-full mt-10">
             Login
           </Button>
         </form>

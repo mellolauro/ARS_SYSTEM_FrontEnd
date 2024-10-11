@@ -31,8 +31,6 @@ try {
     if (existingUser) {
     return NextResponse.json({ error: 'Usuário já cadastrado.' }, { status: 400 });
     }
-
-    
     const hashedPassword = await hash(password, 10);
     
     const newUser = await db.user.create({

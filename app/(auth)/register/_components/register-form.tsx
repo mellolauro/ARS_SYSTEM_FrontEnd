@@ -33,13 +33,13 @@ export default function RegisterForm() {
     const password = formData.get('password') as string;
     
     try {
-      const response = await axios.post('http://localhost:3333/user/create', {
+      const response = await axios.post('http://localhost:3333/auth/register', {
         name,
         email,
         department,
         password,
       });
-  
+
       setLoading(false);
       alert('Usuário registrado com sucesso!');
       window.location.href = '/login';
@@ -47,7 +47,6 @@ export default function RegisterForm() {
       setError('Erro ao registrar usuário. Por favor, tente novamente.');
       setLoading(false);
     }
-    
   };
 
   return (
