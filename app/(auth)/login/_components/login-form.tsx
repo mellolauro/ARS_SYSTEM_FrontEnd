@@ -24,27 +24,22 @@ export default function LoginForm() {
       email: formData.get("email"),
       password: formData.get("password"),
     };
-
-    console.log('Sending login data:', data); // Verificar se os dados estão corretos
+    console.log('Sending login data:', data); 
 
     const result = await signIn("credentials", {
       ...data,
-      redirect: true,  // Evita o redirecionamento automático
-      callbackUrl: "/dashboard",  // Corrigido o caminho do callback
+      redirect: true,  
+      callbackUrl: "/dashboard",  
     });
-
-    console.log('Login result:', result); // Verificar se há algum erro na resposta
-
+    console.log('Login result:', result); 
     if (result?.error) {
       console.error(result.error);
-      // Lide com o erro da maneira desejada (por exemplo, exibir mensagem)
+      
     }
-
     if (result?.ok) {
-      window.location.href = result.url || "/dashboard";  // Redireciona manualmente
+      window.location.href = result.url || "/dashboard";  
     }
   }
-
   return (
     <Card className="mx-auto max-w-96">
       <CardHeader>
