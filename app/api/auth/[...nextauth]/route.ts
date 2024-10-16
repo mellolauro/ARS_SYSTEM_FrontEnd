@@ -27,10 +27,13 @@ const handler = NextAuth({
             body: JSON.stringify(credentials),
             headers: {'Content-Type': 'application/json'},
             });
-            const user = await res.json();
-            if (res.ok && user) {
-            return user;
+
+            const data = await res.json();
+            
+            if (res.ok && data.access_token) {
+            return { ...data, token: data.access_token };
             }
+            
             return null; // Retorna null se o login falhar
         }
         })
