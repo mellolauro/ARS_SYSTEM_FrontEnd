@@ -19,23 +19,31 @@ const handler = NextAuth({
             email: { label: "email", type: "email" },
             password: { label: "Password", type: "password" }
         },
+        
         async authorize(credentials, req) {
             if (!credentials?.email || !credentials?.password) return null;
-            const { email, password } = credentials;
+        
+            const { email, password } = credentials; // Extraia apenas o email e a senha
             const res = await fetch(Backend_URL + "/auth/login", {
-            method: "POST",
-            body: JSON.stringify(credentials),
-            headers: {'Content-Type': 'application/json'},
+                method: "POST",
+                body: JSON.stringify({ email, password }), // Envie apenas o email e a senha
+                headers: {
+                    'Content-Type': 'application/json'
+                },
             });
-
-            const data = await res.json();
-            
+        
+            const data = await res.json(); // Recebe a resposta do backend
+        
+            console.log('Response from backend:', data); // Log da resposta
+        
             if (res.ok && data.access_token) {
-            return { ...data, token: data.access_token };
+                return { ...data, token: data.access_token }; // Retorna o usuário e o token
             }
-            
+        
+            console.log('Login failed', data); // Log do erro
             return null; // Retorna null se o login falhar
         }
+        
         })
     ],
     });
