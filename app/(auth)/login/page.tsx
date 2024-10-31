@@ -1,5 +1,10 @@
 import LoginForm from './_components/login-form';
 
-export default async function LoginPage() {
-  return <LoginForm />;
+export default function LoginPage() {
+  return (
+    <div>
+      <h1>Login</h1>
+      <LoginForm />
+    </div>
+  );
 }

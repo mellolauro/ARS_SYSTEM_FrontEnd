@@ -1,6 +1,8 @@
-'use client';
+'use client'; 
 
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation'; 
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -16,30 +18,46 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
 export default function LoginForm() {
+  const { data: session } = useSession();
+  const router = useRouter(); 
+
+  useEffect(() => {
+    // Redireciona com base no perfil assim que o usuário está logado
+    if (session) {
+      const perfil = session.user.perfil;
+
+      const currentPath = window.location.pathname;
+      if (currentPath !== '/login') {
+        if (perfil === "admin") {
+          router.push("/dashboard"); 
+        } else {
+          router.push("/public");
+        }
+      }
+    }
+  }, [session, router]);
+
   async function login(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
 
     const data = {
-      email: formData.get("email"),
-      password: formData.get("password"),
+      email: formData.get('email'),
+      password: formData.get('password'),
     };
-    console.log('Sending login data:', data); 
 
-    const result = await signIn("credentials", {
+    const result = await signIn('credentials', {
       ...data,
-      redirect: true,  
-      callbackUrl: "/dashboard",  
+      redirect: false, // Impede redirecionamento automático
     });
-    console.log('Login result:', result); 
+
     if (result?.error) {
-      console.error(result.error);
-      
-    }
-    if (result?.ok) {
-      window.location.href = result.url || "/dashboard";  
+      console.error("Erro ao autenticar:", result.error);
+    } else {
+      router.push("/public");
     }
   }
+
   return (
     <Card className="mx-auto max-w-96">
       <CardHeader>

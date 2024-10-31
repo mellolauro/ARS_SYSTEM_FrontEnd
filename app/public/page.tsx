@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default async function HeaderArs() {
+export default function PublicPage() {
    return ( 
       <div>
          <div className="navbar bg-cyan-950">

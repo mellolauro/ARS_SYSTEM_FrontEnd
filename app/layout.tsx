@@ -1,9 +1,12 @@
+
 import type { Metadata } from 'next';
 import { Inter as FontSans } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { ThemeProvider } from '@/components/ui/theme-provider';
 import { ModeToggle } from '@/components/ui/mode-toggle';
+import { ReactNode } from 'react';
+import SessionProviderWrapper from './SessionProviderWrapper';
 
 export const metadata: Metadata = {
   title: 'Next Auth - Workshop',
@@ -38,7 +41,10 @@ export default function RootLayout({
             <ModeToggle />
           </div>
 
-          {children}
+          <SessionProviderWrapper>
+                {children}
+          </SessionProviderWrapper>
+          
         </ThemeProvider>
       </body>
     </html>
